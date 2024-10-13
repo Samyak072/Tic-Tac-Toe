@@ -53,16 +53,7 @@ const Home = () => {
     newBoard[index] = isXNext ? 'X' : 'O';
     setBoard(newBoard);
     setIsXNext(!isXNext);
-
-    if (gameMode === 'single') {
-      // AI Move
-      const aiMove = getBestMove(newBoard);
-      if (aiMove !== -1) {
-        setTimeout(() => {
-          makeMove(aiMove);
-        }, 500);
-      }
-    }
+    // Removed AI move logic from here
   };
 
   const makeMove = (index) => {
@@ -134,6 +125,23 @@ const Home = () => {
     setGameMode((prevMode) => (prevMode === 'single' ? 'multi' : 'single'));
     resetBoard();
   };
+
+  // New useEffect for handling AI moves
+  useEffect(() => {
+    // Only trigger AI move in single-player mode and if it's AI's turn
+    if (gameMode === 'single' && !isXNext && !winner) {
+      const aiMove = getBestMove(board);
+      if (aiMove !== -1) {
+        // Adding a slight delay for better UX
+        const aiMoveTimeout = setTimeout(() => {
+          makeMove(aiMove);
+        }, 500);
+
+        // Cleanup timeout on unmount or when dependencies change
+        return () => clearTimeout(aiMoveTimeout);
+      }
+    }
+  }, [board, isXNext, gameMode, winner]);
 
   return (
     <div>
