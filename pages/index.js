@@ -16,18 +16,20 @@ const Home = () => {
   const [gameMode, setGameMode] = useState('single'); // 'single' or 'multi'
   const [player, setPlayer] = useState('X'); // Only for multiplayer
 
-  useEffect(() => {
-    const win = calculateWinner(board);
-    if (win) {
-      setWinner(win);
-      setScores((prevScores) => ({ ...prevScores, [win]: prevScores[win] + 1 }));
-      setTimeout(resetBoard, 2000);
-    } else if (!board.includes(null)) {
-      setWinner('Draw');
-      setScores((prevScores) => ({ ...prevScores, Draws: prevScores.Draws + 1 }));
-      setTimeout(resetBoard, 2000);
-    }
-  }, [board]);
+useEffect(() => {
+  const win = calculateWinner(board);
+  if (win) {
+    setWinner(win);
+    setScores((prevScores) => ({ ...prevScores, [win]: prevScores[win] + 1 }));
+    winSound.play(); // Play win sound
+    setTimeout(resetBoard, 2000);
+  } else if (!board.includes(null)) {
+    setWinner('Draw');
+    setScores((prevScores) => ({ ...prevScores, Draws: prevScores.Draws + 1 }));
+    drawSound.play(); // Play draw sound
+    setTimeout(resetBoard, 2000);
+  }
+}, [board]);
 
   const handleMove = (index) => {
     if (board[index] || winner) return;
@@ -57,10 +59,11 @@ const Home = () => {
     setIsXNext(!isXNext);
   };
 
-  const resetBoard = () => {
-    setBoard(Array(9).fill(null));
-    setWinner(null);
-  };
+const resetBoard = () => {
+  resetSound.play(); // Play reset sound
+  setBoard(Array(9).fill(null));
+  setWinner(null);
+};
 
   // Simple AI using Minimax Algorithm
   const getBestMove = (currentBoard) => {
@@ -111,10 +114,11 @@ const Home = () => {
     }
   };
 
-  const switchMode = () => {
-    setGameMode((prevMode) => (prevMode === 'single' ? 'multi' : 'single'));
-    resetBoard();
-  };
+const switchMode = () => {
+  resetSound.play(); // Play reset sound
+  setGameMode((prevMode) => (prevMode === 'single' ? 'multi' : 'single'));
+  resetBoard();
+};
 
   return (
     <div>
