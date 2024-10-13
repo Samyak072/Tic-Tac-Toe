@@ -2,12 +2,20 @@
 
 import React from 'react';
 import { Button, Typography } from '@mui/material';
+import { clickSound } from '../utils/sound'; // Import click sound
 
 const Square = ({ value, onClick }) => {
+  const handleClick = () => {
+    if (!value) {
+      clickSound.play(); // Play click sound
+      onClick();
+    }
+  };
+
   return (
     <Button
       variant="outlined"
-      onClick={onClick}
+      onClick={handleClick}
       sx={{
         width: '100px',
         height: '100px',
@@ -27,4 +35,3 @@ const Square = ({ value, onClick }) => {
 };
 
 export default Square;
-
