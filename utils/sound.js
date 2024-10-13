@@ -1,6 +1,6 @@
 // utils/sound.js
 
-import { Howl } from 'howler';
+import { Howl, Howler } from 'howler';
 
 // Initialize Howler.js sounds
 const clickSound = new Howl({
@@ -23,4 +23,38 @@ const resetSound = new Howl({
   volume: 0.5,
 });
 
-export { clickSound, winSound, drawSound, resetSound };
+// (Optional) Background Music
+const backgroundMusic = new Howl({
+  src: ['/sounds/background.mp3'],
+  loop: true,
+  volume: 0.3,
+});
+
+const playBackgroundMusic = () => {
+  backgroundMusic.play();
+};
+
+const pauseBackgroundMusic = () => {
+  backgroundMusic.pause();
+};
+
+// Function to mute all sounds
+const muteAll = () => {
+  Howler.mute(true);
+};
+
+// Function to unmute all sounds
+const unmuteAll = () => {
+  Howler.mute(false);
+};
+
+export {
+  clickSound,
+  winSound,
+  drawSound,
+  resetSound,
+  muteAll,
+  unmuteAll,
+  playBackgroundMusic,
+  pauseBackgroundMusic,
+};
