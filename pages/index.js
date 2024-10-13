@@ -5,6 +5,7 @@ import { Container, Button, Typography, Box } from '@mui/material';
 import Header from '../components/Header';
 import Board from '../components/Board';
 import Scoreboard from '../components/Scoreboard';
+import Footer from '../components/Footer'; // Import Footer component
 import { calculateWinner } from '../utils/gameLogic';
 import {
   winSound,
@@ -22,9 +23,10 @@ const Home = () => {
   const [gameMode, setGameMode] = useState('single'); // 'single' or 'multi'
 
   useEffect(() => {
-    // (Optional) Play background music
+    // Play background music on mount
     playBackgroundMusic();
     return () => {
+      // Pause background music on unmount
       pauseBackgroundMusic();
     };
   }, []);
@@ -136,7 +138,8 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <Container sx={{ textAlign: 'center', marginTop: 4 }}>
+      <Container sx={{ textAlign: 'center', marginTop: 4, paddingBottom: '60px' }}>
+        {/* Added paddingBottom to prevent content from being hidden behind the fixed footer */}
         <Scoreboard scores={scores} />
         <Box sx={{ marginBottom: 2 }}>
           <Typography variant="h6" gutterBottom>
@@ -155,6 +158,7 @@ const Home = () => {
           Switch to {gameMode === 'single' ? 'Multiplayer' : 'Single Player'}
         </Button>
       </Container>
+      <Footer /> {/* Include the Footer component */}
     </div>
   );
 };
