@@ -1,1 +1,22 @@
+# Node modules
+node_modules/
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Build directories
+.next/
+out/
+
+# Environment Variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Miscellaneous
+.DS_Store
+.idea/
+.vscode/
 
