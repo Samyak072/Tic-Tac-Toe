@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Board from '../components/Board';
 import Scoreboard from '../components/Scoreboard';
 import { calculateWinner } from '../utils/gameLogic';
+import { winSound, drawSound, resetSound } from '../utils/sound'; // Import sounds
 
 const Home = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
