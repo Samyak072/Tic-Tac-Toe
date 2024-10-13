@@ -23,6 +23,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.7",
+    "howler": "^2.2.3",
     "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -32,4 +33,3 @@
     "eslint-config-next": "13.4.12"
   }
 }
-
