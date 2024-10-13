@@ -18,10 +18,25 @@ const Footer = () => {
         bottom: 0,
         width: '100%',
         textAlign: 'center',
+        transition: 'background-color 0.3s',
+        '&:hover': {
+          backgroundColor: '#1565c0', // Darken on hover
+        },
       }}
     >
       <Typography variant="body1">
-        &copy; {currentYear} Made by Samyak Mishra with <FavoriteIcon sx={{ color: 'red', verticalAlign: 'middle' }} />. Enjoy the game!
+        &copy; {currentYear} Made by Samyak Mishra with{' '}
+        <FavoriteIcon
+          sx={{
+            color: 'red',
+            verticalAlign: 'middle',
+            transition: 'transform 0.3s',
+            '&:hover': {
+              transform: 'scale(1.2)',
+            },
+          }}
+        />{' '}
+        . Enjoy the game!
       </Typography>
     </Box>
   );
