@@ -5,6 +5,8 @@ import { Box, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <Box
       component="footer"
@@ -19,7 +21,7 @@ const Footer = () => {
       }}
     >
       <Typography variant="body1">
-        Made by Samyak Mishra with <FavoriteIcon sx={{ color: 'red', verticalAlign: 'middle' }} />. Enjoy the game!
+        &copy; {currentYear} Made by Samyak Mishra with <FavoriteIcon sx={{ color: 'red', verticalAlign: 'middle' }} />. Enjoy the game!
       </Typography>
     </Box>
   );
